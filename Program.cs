@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        public delegate void LowStockHandler();
+        
         static void Main(string[] args)
         {
             Library.FillItemInLibrary();
