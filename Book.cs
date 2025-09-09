@@ -4,14 +4,13 @@ namespace ManagingLibrary
     internal class Book : Item
     {
         
-        public string? ISBN { get{ return GetIsbn(); } }
+        public string? ISBN { get; set; }
 
-        public string _ISBN; 
         public int NumberOfPages { get; set; }
 
         
 
-        string GetIsbn()
+        public string GetIsbn()
         {
             string _isbn = "0123456789123";
             char[] temp = new char[13];

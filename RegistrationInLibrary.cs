@@ -2,26 +2,26 @@
 
 namespace ManagingLibrary
 { 
+    delegate void RegisreationHandeller();
     internal class RegistrationInLibrary
     {
-        static Dictionary<string, Member> members = new Dictionary<string, Member>();
-        
-        delegate void RegisreationHandeller();
         static RegisreationHandeller handeller;
        
-
-        public static void LogUpLibrary()
+        public static void LogUpLibrary() //overloading on this method add parameters as string containing email and password
+            //of admin if the the admin found dirctly entry the admin section (soon)
         {
-            Member member = new();
+            User user = new();
             Console.Write("enter the name: ");
-            member.MemberName = Console.ReadLine();
-            Console.Write("enter the id: ");
-            member.MemberId = int.Parse(Console.ReadLine());
+            user.MemberName = Console.ReadLine();
             Console.Write("enter the email: ");
-            member.MemberEmail = Console.ReadLine();
+            user.MemberEmail = Console.ReadLine();
+            Console.Write("enter the phone: ");
+            user.MemberPhone = Console.ReadLine();
+            Console.Write("enter the address: ");
+            user.MemberAddress = Console.ReadLine();
             Console.Write("enter the password: ");
-            member.Password = Console.ReadLine();
-            Member.Members[member.MemberEmail] = member;
+            user.Password = Console.ReadLine();
+            Member.Members[user.MemberEmail] = user;
             Console.WriteLine("\t\t~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine("\t\tyou are logup successfully\n\t\t~~~~~~~~~~~~~~~~~~~~");
             handeller = Library.ShowIntersted;

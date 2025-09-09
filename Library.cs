@@ -10,7 +10,6 @@ namespace ManagingLibrary
         {
             Book book;
             Magazine magazine;
-            Member member;
             int exsitApp;
             do
             {
@@ -22,7 +21,7 @@ namespace ManagingLibrary
                 if (enterNumberOperation == 1)
                 {
                     book = new Book();
-                    book._ISBN = book.ISBN;
+                    book.ISBN = book.GetIsbn();
                     Console.Write("enter the title of book: ");
                     book.Title = Console.ReadLine();
                     book.Category = "book";
