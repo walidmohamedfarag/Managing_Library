@@ -1,7 +1,7 @@
 ﻿
 namespace ManagingLibrary
 {
-    internal abstract class Member 
+    internal class Member 
     {
        public string? MemberName { get; set; }
        public string? MemberEmail { get; set; }
@@ -9,9 +9,17 @@ namespace ManagingLibrary
         public string? MemberAddress { get; set; }
        public string? Password { get; set; }
 
-       public static Dictionary<string, Member> Members = new Dictionary<string, Member>();
+       public static Dictionary<string, Member> Members { get; private set; } = new Dictionary<string, Member>();
 
-        public abstract bool StoreMenber(Member member);
-       
+        public static void StoreMember(Member member)
+        {
+            if(member.Password.Length <= 8)
+            {
+                Console.Write("password must have the greater than or equal 8\nenter password again: ");
+                member.Password = Console.ReadLine();
+            }
+            Members.Add(member.MemberEmail, member);
+        }
+
     }
 }

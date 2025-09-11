@@ -2,34 +2,37 @@
 
 namespace ManagingLibrary
 { 
-    delegate void RegisreationHandeller();
     internal class RegistrationInLibrary
     {
-        static RegisreationHandeller handeller;
        
-        public static void LogUpLibrary() //overloading on this method add parameters as string containing email and password
-            //of admin if the the admin found dirctly entry the admin section (soon)
+        static void LogUpLibrary() 
         {
-            User user = new();
+            Member member = new();
             Console.Write("enter the name: ");
-            user.MemberName = Console.ReadLine();
+            member.MemberName = Console.ReadLine();
             Console.Write("enter the email: ");
-            user.MemberEmail = Console.ReadLine();
+            member.MemberEmail = Console.ReadLine();
             Console.Write("enter the phone: ");
-            user.MemberPhone = Console.ReadLine();
+            member.MemberPhone = Console.ReadLine();
             Console.Write("enter the address: ");
-            user.MemberAddress = Console.ReadLine();
+            member.MemberAddress = Console.ReadLine();
             Console.Write("enter the password: ");
-            user.Password = Console.ReadLine();
-            Member.Members[user.MemberEmail] = user;
+            member.Password = Console.ReadLine();
+            Member.Members[member.MemberEmail] = member;
             Console.WriteLine("\t\t~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine("\t\tyou are logup successfully\n\t\t~~~~~~~~~~~~~~~~~~~~");
-            handeller = Library.ShowIntersted;
-            handeller += Library.OperationLibrary;
-            handeller.Invoke();
+            if (member.MemberEmail.ToLower().EndsWith(".user"))
+            {
+                Library.ShowIntersted();
+                Library.OperationLibrary();
+            }
+            else if (member.MemberEmail.ToLower().EndsWith(".admin"))
+            {
+                Library.ShowAdminSection();
+            }
         }
 
-        public static void LogIn()
+        static void LogIn()
         {
             //enter password and email
             Console.Write("please enetr the email: ");
@@ -38,14 +41,36 @@ namespace ManagingLibrary
             string password = Console.ReadLine();
 
             //check on password and email
-            Func<string,string,bool> CheckLogInLibrary = (_email,_password) =>
-            Member.Members.ContainsKey(_email) && Member.Members[_email].Password == _password;
-            if (CheckLogInLibrary(email, password))
-                handeller.Invoke();
+
+            if (Member.Members.ContainsKey(email) && Member.Members[email].Password ==
+                password && email.ToLower().EndsWith(".user"))
+            {
+                Library.ShowIntersted();
+                Library.OperationLibrary();
+            }
+            else if (Member.Members.ContainsKey(email) && Member.Members[email].Password ==
+                password && email.ToLower().EndsWith(".admin"))
+                Library.ShowAdminSection();
             else
                 Console.WriteLine("email or password incorrect");
 
         }
+
+        public static void EntryLibrary() //move to library class
+        {
+          
+
+            // login or logup members in library to buy or borrow
+            Console.Write("welcome , if you want to buy books or magazines you must to log the library....\n" +
+                "now, you want to login(if you want to have a email) | logup(if you not have a email) (login/logup): ");
+            string? response = Console.ReadLine();
+            if (response?.ToLower() == "login") // if you have email you can login
+                RegistrationInLibrary.LogIn();
+            else if (response?.ToLower() == "logup") // if not have email you can logup
+                RegistrationInLibrary.LogUpLibrary();
+        }
+
+      
 
     }
 }

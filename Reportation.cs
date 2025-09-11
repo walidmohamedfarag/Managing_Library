@@ -40,19 +40,6 @@ namespace ManagingLibrary
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
         }
 
-        public void ItemsLowStock()
-        {
-            Console.WriteLine("<<< items low stock operation >>>");
-            foreach (var item in Item.Items.Values)
-            {
-                if (item.Quantity <= 2)
-                {
-                    Console.WriteLine($"the item {item.Title} is low stock, the quantity = {item.Quantity}\n");
-                    Console.WriteLine("------------------------------\n");
-                }
-            }
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-        }
 
     }
 }

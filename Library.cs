@@ -6,7 +6,7 @@ namespace ManagingLibrary
     internal class Library
     {
         static string? caregory = string.Empty;
-        public static void FillItemInLibrary()//add feature (soon) fill if you admin
+        public static void ShowAdminSection()//add feature (soon) fill if you admin
         {
             Book book;
             Magazine magazine;

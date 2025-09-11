@@ -5,7 +5,7 @@
         
         static void Main(string[] args)
         {
-            Library.FillItemInLibrary();
+            Library.ShowAdminSection();
             User.EntryLibrary();
             Library.ShowReportation();
         }
